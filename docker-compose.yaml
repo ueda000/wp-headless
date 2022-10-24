@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+      TZ: Asia/Tokyo
+      PGTZ: Asia/Tokyo
+  wordpress:
+    depends_on:
+      - postgres
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    restart: always
+    volumes:
+      - ./wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: postgres:5432
+      WORDPRESS_DB_NAME: postgres
+      WORDPRESS_DB_USER: postgres
+      WORDPRESS_DB_PASSWORD: postgrespassword
+volumes:
+  postgres_data:
