@@ -1,0 +1,27 @@
+{
+  "name": "wordpress",
+  "dockerComposeFile": "docker-compose.yaml",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "extensions": [
+    "mhutchie.git-graph",
+    "esbenp.prettier-vscode",
+    "bmewburn.vscode-intelephense-client"
+  ],
+  "features": {
+    "git": {
+      "version": "latest"
+    },
+    "docker-from-docker": {
+      "version": "latest"
+    }
+  },
+  "forwardPorts": [8000],
+  "shutdownAction": "none",
+  "service": "wordpress",
+  "runServices": ["wordpress"],
+  "initializeCommand": "echo UID=$(id -u) > .devcontainer/.env && echo GID=$(id -g) >> .devcontainer/.env"
+}
